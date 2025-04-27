@@ -26,7 +26,7 @@ const AdminPrbAndSolu = () => {
 
   const handleAddPost = (data) => {
     const dbpost = { ...data, postContent };
-    console.log(dbpost);
+    // console.log(dbpost);
 
     if (dbpost) {
       axiosPublic.post("/add-problem-and-solution-post", dbpost).then((res) => {

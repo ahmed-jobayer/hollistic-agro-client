@@ -3,8 +3,12 @@ import useCategories from "../hooks/useCategories";
 
 const Collection = () => {
 
-  const [categories] = useCategories();
+  const [categories, isPending] = useCategories();
 
+  if (isPending) {
+    return <span className="loading loading-dots loading-xl"></span>
+    
+  }
 
   return (
     <div className="container mx-auto">

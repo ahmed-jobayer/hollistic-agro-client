@@ -23,34 +23,6 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [, isPending, refetch] = useUserData(user?.phoneNumber);
   const [searchText, setSearchText] = useState("");
-  const [bannerUrl, setBannerUrl] = useState();
-
-
-  useEffect(() => {
-    axiosPublic
-      .get("/banner")
-      .then((response) => {
-        // Extract the banner URL from the first object in the array
-        // console.log(response.data[0])
-        if (response.data.length > 0) {
-          const newBannerData = response.data[0];
-          // Update state only if the data has changed
-          setBannerUrl((prev) => {
-            return JSON.stringify(prev) === JSON.stringify(newBannerData)
-              ? prev
-              : newBannerData;
-          })
-          } else {
-          // If the array is empty, set a fallback banner URL
-          setBannerUrl("https://i.ibb.co.com/99M1wRfy/holistic-agro.jpg");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching banner:", error);
-        // Set a fallback banner URL in case of an error
-        setBannerUrl("https://i.ibb.co.com/99M1wRfy/holistic-agro.jpg");
-      });
-  }, [axiosPublic]);
 
 
   const [storedCart, setStoredCart] = useState(() => {
@@ -130,7 +102,7 @@ const AuthProviders = ({ children }) => {
         timer: 1000,
         showConfirmButton: false,
       });
-      console.log(cart);
+      // console.log(cart);
       setStoredCart(cart);
       setIsCartOpen(true);
       // refetchById();
@@ -152,7 +124,6 @@ const AuthProviders = ({ children }) => {
     setSearchText,
     storedCart,
     setStoredCart,
-    bannerUrl
   };
 
   return (

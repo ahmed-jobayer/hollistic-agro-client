@@ -56,7 +56,7 @@ const UpdateProduct = () => {
       .patch(`/update-product/${loadedProduct._id}`, product)
       .then((res) => {
         if (res.data.modifiedCount) {
-            console.log(res.data);
+            // console.log(res.data);
           Swal.fire({
             position: "center",
             icon: "success",

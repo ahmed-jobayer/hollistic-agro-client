@@ -3,11 +3,13 @@ import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 const AllProducts = () => {
-  const [products] = useProducts();
+  const [products, isPending] = useProducts();
   const {  handleAddToCart } = useAuth();
 
-  // console.log(user)
-
+if (isPending) {
+    return <span className="loading loading-dots loading-xl"></span>
+  
+}
 
   return (
     <div>

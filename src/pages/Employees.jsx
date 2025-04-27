@@ -14,9 +14,9 @@ const Employees = () => {
   const nonEmployeeList = employees.filter(
     (emp) => emp.employeeType === "Non Employee"
   );
-  console.log(employeeList, nonEmployeeList);
+  // console.log(employeeList, nonEmployeeList);
   return (
-    <div className="w-full container mx-auto mt-12">
+    <div className="w-full container mx-auto mt-12 min-h-screen">
       {/* s;ider for nonEmployeeList in mobile */}
       <div className="md:hidden lg:hidden ">
         <Swiper

@@ -10,7 +10,7 @@ const Coupons = () => {
   const [couponValue, setCouponValue] = useState('');
   const [coupons, isPending, refetch] = useCoupons();
   const [hoveredCoupon, setHoveredCoupon] = useState(null);
-  console.log(coupons);
+  // console.log(coupons);
   
 
   const postCoupon = () => {

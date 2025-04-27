@@ -7,7 +7,7 @@ const CategoryWiseProducts = () => {
   const products = useLoaderData();
   const { loading, isPending, handleAddToCart } = useAuth();
 
-  console.log(products);
+  // console.log(products);
   if (loading && isPending) {
     <Loader/>
   }

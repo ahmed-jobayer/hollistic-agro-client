@@ -17,7 +17,7 @@ const AdminEmployees = () => {
   } = useForm();
 
   const postEmployee = (data) => {
-    console.log(data);
+    // console.log(data);
     axiosPublic.post("/add-employee", data).then((res) => {
       if (res.data.insertedId) {
         Swal.fire({

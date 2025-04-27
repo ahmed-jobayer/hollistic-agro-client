@@ -4,6 +4,8 @@ import Banner from "../components/Banner";
 import Collection from "../components/Collection";
 
 const Home = () => {
+
+
   return (
     <div className="min-h-screen">
       <Helmet>

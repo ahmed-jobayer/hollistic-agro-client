@@ -10,7 +10,7 @@ const SearchedProducts = () => {
     const [products, setProducts] = useState([]); // Store searched products
     const [loading, setLoading] = useState(false);
 
-    console.log(searchText);
+    // console.log(searchText);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -18,7 +18,7 @@ const SearchedProducts = () => {
             setLoading(true);
             try {
                 const res = await axiosPublic.get(`/search-products?title=${searchText}`);
-                console.log(res.data)
+                // console.log(res.data)
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -31,7 +31,7 @@ const SearchedProducts = () => {
         fetchProducts();
     }, [searchText, axiosPublic, setSearchText]); // Re-run when searchText changes
 
-    console.log(products);
+    // console.log(products);
 
     return (
         <div className="container mx-auto p-4">

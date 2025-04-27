@@ -86,7 +86,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               className="w-[70px]"
-              src="https://i.ibb.co.com/D7fgpMQ/logo-removebg-preview.png"
+              src='/company-logo.png'
               alt="Holistic Agro Logo"
             />
           </Link>

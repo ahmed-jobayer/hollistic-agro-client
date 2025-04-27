@@ -2,12 +2,12 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useJobs from "../hooks/useJobs";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Career = () => {
   const [jobs] = useJobs();
   const axiosPublic = useAxiosPublic();
-
-  // console.log(jobs);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -17,6 +17,7 @@ const Career = () => {
   } = useForm();
 
   const handleResumeSubmit = async (data) => {
+    setLoading(true);
     const name = data.name;
     const email = data.email;
     const phone = data.phone;
@@ -27,29 +28,50 @@ const Career = () => {
     formData.append("email", email);
     formData.append("phone", phone);
     formData.append("file", file);
-    const result = await axiosPublic.post("/upload-files", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    if (result) {
-      Swal.fire({
-        title: "Success",
-        text: "Application submitted successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1000,
+    
+    try {
+      const result = await axiosPublic.post("/upload-files", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
+      
+      if (result.status === 200) {
+        Swal.fire({
+          title: "Success",
+          text: "Application submitted successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        document.getElementById("apply-modal").close();
+        reset();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "Failed to submit application",
+        icon: "error",
+        showConfirmButton: true,
+      });
+    } finally {
+      setLoading(false);
     }
-    // console.log(result.data)
-
-    document.getElementById("apply-modal").close();
-    reset();
   };
 
   return (
-    <div className="container mx-auto p-3">
-      <div className="grid grid-cols-2 ">
-        <div className="flex justify-center  flex-col lg:pl-10">
-          <h2 className="text-xl lg:text-4xl  font-semibold">
+    <div className="container mx-auto p-3 relative">
+      {/* Full-screen dimmed loader overlay */}
+      {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[5000] flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+            <span className="loading loading-dots loading-lg text-primaryColor"></span>
+            <p className="mt-4 text-gray-700">Submitting your application...</p>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="flex justify-center flex-col lg:pl-10">
+          <h2 className="text-xl lg:text-4xl font-semibold">
             Join Our Team AT <br />{" "}
             <span className="text-primaryColor">Holistic Agro</span>
           </h2>
@@ -62,7 +84,7 @@ const Career = () => {
       <h2 className="text-center my-4 text-3xl font-medium">
         Job Opportunities
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {jobs?.map((job) => (
           <div
             key={job?._id}
@@ -71,7 +93,7 @@ const Career = () => {
             <img
               src={job?.jobBannerImage}
               alt={job?.employeeType}
-              className=" object-cover"
+              className="object-cover"
             />
             <button
               onClick={() => document.getElementById("apply-modal").showModal()}
@@ -84,8 +106,7 @@ const Career = () => {
       </div>
 
       {/* modal for apply button */}
-
-      <dialog id="apply-modal" className="modal">
+      <dialog id="apply-modal" className="modal z-50">
         <div className="modal-box">
           <button
             onClick={() => document.getElementById("apply-modal").close()}
@@ -163,8 +184,11 @@ const Career = () => {
             </div>
 
             <div className="form-control mt-6">
-              <button className=" btn btn-sm text-white bg-primaryColor border-none  hover:bg-primaryColor hover:scale-95 duration-500">
-                Apply
+              <button 
+                className="btn btn-sm text-white bg-primaryColor border-none hover:bg-primaryColor hover:scale-95 duration-500"
+                disabled={loading}
+              >
+                {loading ? "Applying..." : "Apply"}
               </button>
             </div>
           </form>

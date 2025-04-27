@@ -1,13 +1,11 @@
 
-import useAuth from "../hooks/useAuth";
 
 const AboutUs = () => {
-    const {bannerUrl} = useAuth()
   return (
     <div>
       <img
         className="w-full"
-        src={bannerUrl?.image1}
+        src='/banner1.png'
         alt=""
       />
         <div className=" container mx-auto max-w-5xl flex flex-col gap-4  my-12">
@@ -42,3 +40,7 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+
+
+

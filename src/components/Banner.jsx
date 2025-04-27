@@ -1,13 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import useAuth from "../hooks/useAuth";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const Banner = () => {
-  const { bannerUrl } = useAuth();
-  console.log(bannerUrl);
 
   return (
     <div className="my-7 w-full z-0">
@@ -20,22 +17,22 @@ const Banner = () => {
       >
         <SwiperSlide>
           <img
-            src={bannerUrl?.image1}
-            alt="Non Employee"
+            src='/banner1.png'
+            alt=""
             className="w-full "
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src={bannerUrl?.image2}
-            alt="Non Employee"
+            src='/banner2.png'
+            alt=""
             className="w-full "
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src={bannerUrl?.image3}
-            alt="Non Employee"
+            src='/banner3.png'
+            alt=""
             className="w-full "
           />
         </SwiperSlide>

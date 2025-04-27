@@ -11,7 +11,7 @@ const Categories = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const postCategory = () => {
     const dbCategory = { category, categoryImage };
-    console.log(dbCategory);
+    // console.log(dbCategory);
     if (dbCategory) {
       axiosPublic
         .post(
