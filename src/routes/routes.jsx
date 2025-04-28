@@ -84,11 +84,10 @@ export const router = createBrowserRouter([
         element:<ProductDetailsPage/>,
         loader: ({params}) => fetch(`${BASE_URL}/product/${params.id}`)
       },
-      
+       
       {
         path: '/products/:category',
-        element:<CategoryWiseProducts/>,
-        loader: ({params}) => fetch(`${BASE_URL}/products/${params.category}`)
+        element:<CategoryWiseProducts/>
       },
     ]
   },
