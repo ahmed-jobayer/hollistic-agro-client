@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const CategoryWiseProducts = () => {
   const { handleAddToCart } = useAuth();
-  const axiosPubluic = useAxiosPublic()
+  const axiosPubluic = useAxiosPublic() 
   const {category} = useParams();
 
   const {data: products, isLoading} = useQuery({

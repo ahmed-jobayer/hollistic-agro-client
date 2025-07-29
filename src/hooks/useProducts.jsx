@@ -10,7 +10,7 @@ const useProducts = () => {
       queryFn: async () => {
         const res = await axiosPublic.get("/products");
         return res.data;
-      },
+      }, 
     });
   
     return [products, isPending, refetch];
